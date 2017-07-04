@@ -9,36 +9,26 @@ package com.mycompany.ftp_example;
  *
  * @author roberto
  */
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
+import java.awt.EventQueue;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
-
 import javax.swing.JFrame;
-
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Component;
-
-import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
 import java.awt.Color;
+import javax.swing.JFileChooser;
 
 
 public class Proyecto {
@@ -401,7 +391,7 @@ public class Proyecto {
 		lblArchivo.setBounds(327, 175, 46, 14);
 		frmSistemaDeArchivos.getContentPane().add(lblArchivo);
 		
-		JButton btnAbrir = new JButton("Abrir");
+		JButton btnAbrir = new JButton("Abrir D");
 		btnAbrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				muestra.setText("");
@@ -439,22 +429,30 @@ public class Proyecto {
 		
 		JButton subir = new JButton("Subir");
 		subir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-					 ftp.changeWorkingDirectory("/");            //nos movemos dentro del arbol de directorios        
-				      FileInputStream fis = new FileInputStream("C:/Users/Cesar/Documents/Radiotelegrafo.pdf"); //Se abre un archivo de nuestra maquina local
-				      ftp.setFileType(ftp.BINARY_FILE_TYPE); //Se pone tipo binario para poder enviar archivos de cualquier tipo
-				      boolean res = ftp.storeFile("Hola.pdf", fis ); //arch=nombre que va a tener el archivo
-				}
-				catch(IOException e1){
-					System.out.print(e1);
-				}
-			}
+                public void actionPerformed(ActionEvent e) {
+                        try{
+                                ftp.changeWorkingDirectory("/");            //nos movemos dentro del arbol de directorios        
+                                //FileInputStream fis = new FileInputStream("C:/Users/Hitzu/Desktop/hola.txt"); //Se abre un archivo de nuestra maquina local
+                                JFileChooser fc = new JFileChooser();
+                                int seleccion = fc.showOpenDialog(frmSistemaDeArchivos);
+                                File file = null;
+                                if(seleccion == JFileChooser.APPROVE_OPTION) 
+                                {
+                                    file = fc.getSelectedFile();
+                                }
+                                FileInputStream fis = new FileInputStream(file.getAbsolutePath());
+                                ftp.setFileType(ftp.BINARY_FILE_TYPE); //Se pone tipo binario para poder enviar archivos de cualquier tipo
+                                boolean res = ftp.storeFile("Hola.txt", fis ); //arch=nombre que va a tener el archivo
+                        }
+                        catch(IOException e1){
+                                System.out.print(e1);
+                        }
+                }
 		});
 		subir.setBounds(284, 120, 89, 23);
 		frmSistemaDeArchivos.getContentPane().add(subir);
 		
-		JButton abrir = new JButton("Abrir");
+		JButton abrir = new JButton("Abrir Archivo");
 		abrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
