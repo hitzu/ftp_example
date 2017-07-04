@@ -268,12 +268,12 @@ public class Proyecto {
 		JButton bt_norma = new JButton("");
 		bt_norma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ruta_act="/Norma";
+				ruta_act="/Sandy";
 				muestra.setText("");
 				FTPFile[] lista;
-				String ip = "192.168.0.2";
-				String user = "njhd@outlook.es";
-				String pass = "NorMa.1602";
+				String ip = "192.168.0.13";
+				String user = "Sandy";
+				String pass = "sandy";
 			
 			try{
 				ftp.connect(ip);
@@ -284,7 +284,7 @@ public class Proyecto {
 					muestra.append(lista[i].toString() + "\n");
 					
 				}
-				ruta.setText("/Norma");
+				ruta.setText("/Sandy");
 			}
 			catch(IOException e){
 				System.out.print("Error de conexion");
@@ -300,12 +300,12 @@ public class Proyecto {
 		JButton bt_cesar = new JButton("");
 		bt_cesar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ruta_act="Cesar";
+				ruta_act="Ivan";
 				muestra.setText("");
 				FTPFile[] lista;
-				String ip = "192.168.0.1";
-				String user = "cesar_mazapila@outlook.es";
-				String pass = "BeforeTW040695";
+				String ip = "192.168.0.12";
+				String user = "Ivan&Liz";
+				String pass = "ihernandez";
 			
 			try{
 				ftp.connect(ip);
@@ -316,7 +316,7 @@ public class Proyecto {
 					muestra.append(lista[i].toString() + "\n");
 					
 				}
-				ruta.setText("/Cesar");
+				ruta.setText("/Ivan");
 			}
 			catch(IOException e){
 				System.out.print("Error de conexion");
@@ -331,12 +331,12 @@ public class Proyecto {
 		JButton bt_Luis = new JButton("");
 		bt_Luis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ruta_act="Luis";
+				ruta_act="Roberto";
 				muestra.setText("");
 				FTPFile[] lista;
-				String ip = "192.168.0.3";
-				String user = "luis_dag_593@outlook.com";
-				String pass = "luis5714";
+				String ip = "192.168.0.11";
+				String user = "hitzu";
+				String pass = "olagatito!";
 			
 			try{
 				ftp.connect(ip);
@@ -346,7 +346,7 @@ public class Proyecto {
 				for(int i=0; i < lista.length; i++){
 					muestra.append(lista[i].toString() + "\n");
 				}
-				ruta.setText("/Luis");
+				ruta.setText("/Roberto");
 			}
 			catch(IOException e1){
 				System.out.print("Error de conexion");
@@ -480,17 +480,17 @@ public class Proyecto {
 		abrir.setBounds(515, 170, 83, 23);
 		frmSistemaDeArchivos.getContentPane().add(abrir);
 		
-		JLabel lblNorma = new JLabel("Norma");
+		JLabel lblNorma = new JLabel("Sandy");
 		lblNorma.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNorma.setBounds(120, 205, 63, 14);
 		frmSistemaDeArchivos.getContentPane().add(lblNorma);
 		
-		JLabel lblCesar = new JLabel("Cesar");
+		JLabel lblCesar = new JLabel("Ivan");
 		lblCesar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCesar.setBounds(221, 205, 64, 14);
 		frmSistemaDeArchivos.getContentPane().add(lblCesar);
 		
-		JLabel lblOmar = new JLabel("Luis");
+		JLabel lblOmar = new JLabel("Roberto");
 		lblOmar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOmar.setBounds(327, 205, 64, 14);
 		frmSistemaDeArchivos.getContentPane().add(lblOmar);
