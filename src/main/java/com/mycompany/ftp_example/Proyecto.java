@@ -109,7 +109,7 @@ public class Proyecto {
 				ruta.setText(c.nombreLocal);
                                 muestra.setText(archivos);
                                 try {
-                                Thread.sleep(100000);
+                                Thread.sleep(10000);
                                 } catch (InterruptedException ex) {
                                     Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -178,6 +178,36 @@ public class Proyecto {
 		JButton nuevaC = new JButton("NUEVA CARPETA");
 		nuevaC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                            try{
+                        for(Conexion conexion : conexiones){
+                                System.out.println(conexion);
+                                String ip = conexion.getIp();
+                                String user = conexion.getUser();
+                                String pass = conexion.getPass();
+                                ftp.connect(ip);
+                                if(ftp.login(user, pass))
+                                {
+                                    ftp.enterLocalPassiveMode();
+                                    String dir= nom_dir.getText();
+                                    if(ftp.makeDirectory(dir))
+                                    {
+                                        System.out.println("Se creo el directorio");
+                                    }
+                                    else
+                                    {
+                                        System.out.println("No Se creo el directorio");
+                                    }
+                                }    
+                                else
+                                {
+                                    System.out.println("Error en la conexion");
+                                }
+                            }
+                        }catch(IOException e1){
+                                System.out.print(e1);
+                        }
+                            
+                            
 				muestra.setText("");
 				FTPFile[] lista;
 				try{
@@ -198,20 +228,36 @@ public class Proyecto {
 		
 		JButton eliminaA = new JButton("ELIMINAR ARCHIVO");
 		eliminaA.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String arch = nom_arch.getText();
-				muestra.setText("");
-				FTPFile[] lista;
-			try{
-				ftp.deleteFile(arch);
-				lista = ftp.listFiles();
-				for(int i=0; i < lista.length; i++){
-					muestra.append(lista[i].toString() + "\n");	
-				}
-			}catch(IOException e1){
-				System.out.print("Error de conexion " + e1.toString());
-			}	
-			}
+                    public void actionPerformed(ActionEvent e) {        
+                        try{
+                        for(Conexion conexion : conexiones){
+                                System.out.println(conexion);
+                                String ip = conexion.getIp();
+                                String user = conexion.getUser();
+                                String pass = conexion.getPass();
+                                ftp.connect(ip);
+                                if(ftp.login(user, pass))
+                                {
+                                    ftp.enterLocalPassiveMode();
+                                    String arch = nom_arch.getText();
+                                    if(ftp.deleteFile(arch))
+                                    {
+                                        System.out.println("Se elimino el archivo");
+                                    }
+                                    else
+                                    {
+                                        System.out.println("No Se elimino el archivo");
+                                    }
+                                }    
+                                else
+                                {
+                                    System.out.println("Error en la conexion");
+                                }
+                            }
+                        }catch(IOException e1){
+                                System.out.print(e1);
+                        }	
+                    }
 		});
 		eliminaA.setBounds(420, 448, 150, 25);
 		frmSistemaDeArchivos.getContentPane().add(eliminaA);
@@ -219,19 +265,35 @@ public class Proyecto {
 		JButton eliminaC = new JButton("ELIMINAR CARPETA");
 		eliminaC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String dir = nom_dir.getText();
-				muestra.setText("");
-				FTPFile[] lista;
-			try{
-				ftp.removeDirectory(dir);
-				lista = ftp.listFiles();
-				for(int i=0; i < lista.length; i++){
-					muestra.append(lista[i].toString() + "\n");	
-				}
-			}catch(IOException e1){
-				System.out.print("Error de conexion: " + e1.toString());
-			}
-			}
+                            try{
+                        for(Conexion conexion : conexiones){
+                                System.out.println(conexion);
+                                String ip = conexion.getIp();
+                                String user = conexion.getUser();
+                                String pass = conexion.getPass();
+                                ftp.connect(ip);
+                                if(ftp.login(user, pass))
+                                {
+                                    ftp.enterLocalPassiveMode();
+                                    String dir = nom_dir.getText();
+                                    if(ftp.removeDirectory(dir))
+                                    {
+                                        System.out.println("Se elimino el directorio");
+                                    }
+                                    else
+                                    {
+                                        System.out.println("No Se elimino el directorio");
+                                    }
+                                }    
+                                else
+                                {
+                                    System.out.println("Error en la conexion");
+                                }
+                            }
+                        }catch(IOException e1){
+                                System.out.print(e1);
+                        }
+                    }
 		});
 		eliminaC.setBounds(110, 450, 150, 24);
 		frmSistemaDeArchivos.getContentPane().add(eliminaC);
