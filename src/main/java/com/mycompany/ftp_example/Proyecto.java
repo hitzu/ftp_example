@@ -78,8 +78,8 @@ public class Proyecto {
 		c_ruta="";
 		frmSistemaDeArchivos = new JFrame();
 		frmSistemaDeArchivos.setResizable(false);
-		frmSistemaDeArchivos.setTitle("Sistema de Archivos Distribuido");
-		frmSistemaDeArchivos.setBounds(100, 50, 650, 500);
+		frmSistemaDeArchivos.setTitle("Sistema de Archivos FTP Distribuido");
+		frmSistemaDeArchivos.setBounds(200, 50, 640, 550);
 		frmSistemaDeArchivos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSistemaDeArchivos.getContentPane().setLayout(null);
 		ftp = new FTPClient();
@@ -185,10 +185,10 @@ public class Proyecto {
 				}
 			}
 		});
-		nuevaC.setBounds(40, 380, 150, 28);
+		nuevaC.setBounds(110, 410, 150, 28);
 		frmSistemaDeArchivos.getContentPane().add(nuevaC);
 		
-		JButton eliminaA = new JButton("");
+		JButton eliminaA = new JButton("ELIMINAR ARCHIVO");
 		eliminaA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String arch = nom_arch.getText();
@@ -205,11 +205,10 @@ public class Proyecto {
 			}	
 			}
 		});
-		eliminaA.setIcon(new ImageIcon("Ico"+File.separator+"delete-file-icon.png"));
-		eliminaA.setBounds(80, 380, 150, 24);
+		eliminaA.setBounds(420, 448, 150, 25);
 		frmSistemaDeArchivos.getContentPane().add(eliminaA);
 		
-		JButton eliminaC = new JButton("");
+		JButton eliminaC = new JButton("ELIMINAR CARPETA");
 		eliminaC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String dir = nom_dir.getText();
@@ -226,8 +225,7 @@ public class Proyecto {
 			}
 			}
 		});
-		eliminaC.setIcon(new ImageIcon("Ico"+File.separator+"folder-delete-icon.png"));
-		eliminaC.setBounds(240, 350, 24, 24);
+		eliminaC.setBounds(110, 450, 150, 24);
 		frmSistemaDeArchivos.getContentPane().add(eliminaC);
 		
 		JLabel lblDirectorio = new JLabel("Directorio:");
@@ -235,20 +233,20 @@ public class Proyecto {
 		frmSistemaDeArchivos.getContentPane().add(lblDirectorio);
 		
 		nom_dir = new JTextField();
-		nom_dir.setBounds(105, 340, 113, 20);
+		nom_dir.setBounds(110, 340, 150, 20);
 		frmSistemaDeArchivos.getContentPane().add(nom_dir);
 		nom_dir.setColumns(10);
 		
 		nom_arch = new JTextField();
-		nom_arch.setBounds(380, 340, 127, 20);
+		nom_arch.setBounds(420, 340, 150, 20);
 		frmSistemaDeArchivos.getContentPane().add(nom_arch);
 		nom_arch.setColumns(10);
 		
 		JLabel lblArchivo = new JLabel("Archivo:");
-		lblArchivo.setBounds(327, 340, 46, 14);
+		lblArchivo.setBounds(360, 340, 46, 14);
 		frmSistemaDeArchivos.getContentPane().add(lblArchivo);
 		
-		JButton btnAbrir = new JButton("Abrir D");
+		JButton btnAbrir = new JButton("ABRIR DIRECTORIO");
 		btnAbrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				muestra.setText("");
@@ -259,7 +257,6 @@ public class Proyecto {
 				lista = ftp.listFiles();
 				for(int i=0; i < lista.length; i++){
 					muestra.append(lista[i].toString() + "\n");
-					
 				}
 				ruta.setText(ruta_act + ftp.printWorkingDirectory());
 				nom_dir.setText("");
@@ -268,7 +265,7 @@ public class Proyecto {
 				}
 			}
 		});
-		btnAbrir.setBounds(224, 340, 82, 23);
+		btnAbrir.setBounds(110, 370, 150, 25);
 		frmSistemaDeArchivos.getContentPane().add(btnAbrir);
 		
 		muestra = new JTextArea();
@@ -280,7 +277,7 @@ public class Proyecto {
 		scroll.setBounds(100, 80, 450, 233);
 		frmSistemaDeArchivos.getContentPane().add(scroll);
 		
-		JButton subir = new JButton("Subir");
+		JButton subir = new JButton("SUBIR ARCHIVO");
 		subir.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                         try{
@@ -320,10 +317,10 @@ public class Proyecto {
                         }
                     }
 		});
-		subir.setBounds(284, 380, 89, 23);
+		subir.setBounds(420, 410, 150, 25);
 		frmSistemaDeArchivos.getContentPane().add(subir);
 		
-		JButton abrir = new JButton("Abrir Archivo");
+		JButton abrir = new JButton("ABRIR ARCHIVO");
 		abrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -334,13 +331,12 @@ public class Proyecto {
 				stream.close();
 				String f= new String("C:/Users/normita.jacqui/Desktop/Abrir" + archivo);
 				Runtime.getRuntime().exec("cmd /c start " + f);
-				}
-				catch(IOException e1){
+				}catch(IOException e1){
 					System.out.print(e1);
 				}
 			}	
 		});
-		abrir.setBounds(515, 340, 83, 23);
+		abrir.setBounds(420, 375, 150, 25);
 		frmSistemaDeArchivos.getContentPane().add(abrir);
 	}
         
