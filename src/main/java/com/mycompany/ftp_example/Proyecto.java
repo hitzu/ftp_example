@@ -86,6 +86,35 @@ public class Proyecto {
 		ftp = new FTPClient();
                 LLenarConexiones();
                 
+                Thread h = new Thread(new Runnable() {
+                    @Override
+                    public void run(){
+                        while(true){
+                           String archivos="";
+                            FTPFile[] lista;
+                            String ip = "localhost";
+                            String user = "Sandy";
+                            String pass = "sandy";
+                            try{
+				ftp.connect(ip);
+				if(ftp.login(user, pass)){
+                                    ftp.enterLocalPassiveMode();
+                                    lista = ftp.listFiles();
+                                    for(int i=0; i < lista.length; i++){
+					archivos += lista[i]+"\n";	
+                                    }
+                                }
+				ruta.setText("/Sandy");
+                                muestra.setText(archivos);
+			}
+			catch(IOException e){
+				System.out.print("Error de conexion: " + e.toString());
+			}
+                        }
+                    }
+                });
+                h.start();
+                
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
