@@ -259,128 +259,6 @@ public class Proyecto {
 		btnNewButton_7.setBounds(240, 120, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(btnNewButton_7);
 		
-		JButton bt_norma = new JButton("");
-		bt_norma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ruta_act="/Sandy";
-				muestra.setText("");
-				FTPFile[] lista;
-				String ip = "192.168.0.13";
-				String user = "Sandy";
-				String pass = "sandy";
-			
-			try{
-				ftp.connect(ip);
-				boolean login = ftp.login(user, pass);
-				ftp.enterLocalPassiveMode();
-				lista = ftp.listFiles();
-				for(int i=0; i < lista.length; i++){
-					muestra.append(lista[i].toString() + "\n");
-					
-				}
-				ruta.setText("/Sandy");
-			}
-			catch(IOException e){
-				System.out.print("Error de conexion: " + e.toString());
-			}
-				
-				
-			}
-		});
-		bt_norma.setIcon(new ImageIcon("Ico"+File.separator+"Folder-icon (3).png"));
-		bt_norma.setBounds(119, 227, 64, 64);
-		frmSistemaDeArchivos.getContentPane().add(bt_norma);
-		
-		JButton bt_cesar = new JButton("");
-		bt_cesar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ruta_act="Ivan";
-				muestra.setText("");
-				FTPFile[] lista;
-				String ip = "192.168.0.12";
-				String user = "Ivan&Liz";
-				String pass = "ihernandez";
-			
-			try{
-				ftp.connect(ip);
-				boolean login = ftp.login(user, pass);
-				ftp.enterLocalPassiveMode();
-				lista = ftp.listFiles();
-				for(int i=0; i < lista.length; i++){
-					muestra.append(lista[i].toString() + "\n");
-					
-				}
-				ruta.setText("/Ivan");
-			}
-			catch(IOException e){
-				System.out.print("Error de conexion");
-			}
-			
-			}
-		});
-		bt_cesar.setIcon(new ImageIcon("Ico"+File.separator+"Folder-icon (3).png"));
-		bt_cesar.setBounds(221, 227, 64, 64);
-		frmSistemaDeArchivos.getContentPane().add(bt_cesar);
-		
-		JButton bt_Luis = new JButton("");
-		bt_Luis.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ruta_act="Roberto";
-				muestra.setText("");
-				FTPFile[] lista;
-				String ip = "192.168.0.11";
-				String user = "hitzu";
-				String pass = "olagatito!";
-			
-			try{
-				ftp.connect(ip);
-				boolean login = ftp.login(user, pass);
-				ftp.enterLocalPassiveMode();
-				lista = ftp.listFiles();
-				for(int i=0; i < lista.length; i++){
-					muestra.append(lista[i].toString() + "\n");
-				}
-				ruta.setText("/Roberto");
-			}
-			catch(IOException e1){
-				System.out.print("Error de conexion " + e1.toString());
-			}			
-			}
-		});
-		bt_Luis.setIcon(new ImageIcon("Ico"+File.separator+"Folder-icon (3).png"));
-		bt_Luis.setBounds(327, 227, 64, 64);
-		frmSistemaDeArchivos.getContentPane().add(bt_Luis);
-		
-		JButton bt_fanny = new JButton("");
-		bt_fanny.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ruta_act="Fanny";
-				muestra.setText("");
-				FTPFile[] lista;
-				String ip = "192.168.0.4";
-				String user = "digo7195@hotmail.com";
-				String pass = "7195fannydigo";
-			
-			try{
-				ftp.connect(ip);
-				boolean login = ftp.login(user, pass);
-				ftp.enterLocalPassiveMode();
-				lista = ftp.listFiles();
-				for(int i=0; i < lista.length; i++){
-					muestra.append(lista[i].toString() + "\n");
-					
-				}
-				ruta.setText("/Fanny");
-			}
-			catch(IOException e2){
-				System.out.print("Error de conexion");
-			}
-			}
-		});
-		bt_fanny.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\Folder-icon (3).png"));
-		bt_fanny.setBounds(430, 227, 64, 64);
-		//frmSistemaDeArchivos.getContentPane().add(bt_fanny);
-		
 		JLabel lblDirectorio = new JLabel("Directorio:");
 		lblDirectorio.setBounds(43, 175, 61, 14);
 		frmSistemaDeArchivos.getContentPane().add(lblDirectorio);
@@ -514,25 +392,6 @@ public class Proyecto {
 		abrir.setBounds(515, 170, 83, 23);
 		frmSistemaDeArchivos.getContentPane().add(abrir);
 		
-		JLabel lblNorma = new JLabel("Sandy");
-		lblNorma.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNorma.setBounds(120, 205, 63, 14);
-		frmSistemaDeArchivos.getContentPane().add(lblNorma);
-		
-		JLabel lblCesar = new JLabel("Ivan");
-		lblCesar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCesar.setBounds(221, 205, 64, 14);
-		frmSistemaDeArchivos.getContentPane().add(lblCesar);
-		
-		JLabel lblOmar = new JLabel("Roberto");
-		lblOmar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOmar.setBounds(327, 205, 64, 14);
-		frmSistemaDeArchivos.getContentPane().add(lblOmar);
-		
-		JLabel lblFanny = new JLabel("Fanny");
-		lblFanny.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFanny.setBounds(430, 205, 64, 14);
-		//frmSistemaDeArchivos.getContentPane().add(lblFanny);
 		
 	}
         
@@ -546,8 +405,8 @@ public class Proyecto {
             conexiones.add(conexion2);
             Conexion conexion3 = new Conexion(c.nombre3,c.ip3,c.usr3,c.pass3);
             conexiones.add(conexion3);
-            //Conexion conexion1 = new Conexion(c.nombre4,c.ip4,c.usr4,c.pass4);
-            //conexiones.add(conexion1);
+            //Conexion conexion4 = new Conexion(c.nombre4,c.ip4,c.usr4,c.pass4);
+            //conexiones.add(conexion4);
             
         }
 }
