@@ -120,7 +120,7 @@ public class Proyecto {
 				
 			}
 		});
-		back.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\arrow-back-icon.png"));
+		back.setIcon(new ImageIcon("Ico"+File.separator+"arrow-back-icon.png"));
 		back.setBounds(46, 59, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(back);
 		
@@ -147,12 +147,12 @@ public class Proyecto {
 				
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\arrow-next-3-icon.png"));
+		btnNewButton_1.setIcon(new ImageIcon("Ico"+File.separator+"arrow-next-3-icon.png"));
 		btnNewButton_1.setBounds(80, 59, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\Places-folder-green-icon.png"));
+		btnNewButton_2.setIcon(new ImageIcon("Ico"+File.separator+"Places-folder-green-icon.png"));
 		btnNewButton_2.setBounds(151, 59, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(btnNewButton_2);
 		
@@ -164,25 +164,21 @@ public class Proyecto {
 		
 		JButton actualiza = new JButton("");
 		actualiza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				muestra.setText("");
-				FTPFile[] lista;
+                    public void actionPerformed(ActionEvent e) {
+                        muestra.setText("");
+                        FTPFile[] lista;
 			try{
-				lista = ftp.listFiles();
-				for(int i=0; i < lista.length; i++){
-					muestra.append(lista[i].toString() + "\n");	
-				}
+                            lista = ftp.listFiles();
+                            for(int i=0; i < lista.length; i++){
+                                    muestra.append(lista[i].toString() + "\n");	
+                            }
 			}
 			catch(IOException e1){
-				System.out.print("Error de conexion");
-			}
-				
-				
-				
-				
-			}
+                            System.out.print("Error de conexion: " + e1.toString());
+			}	
+                    }
 		});
-		actualiza.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\update-icon.png"));
+		actualiza.setIcon(new ImageIcon("Ico"+File.separator+"update-icon.png"));
 		actualiza.setBounds(568, 60, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(actualiza);
 		
@@ -211,12 +207,12 @@ public class Proyecto {
 				}
 			}
 		});
-		btnNewButton_4.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\folder-documents-icon.png"));
+		btnNewButton_4.setIcon(new ImageIcon("Ico"+File.separator+"folder-documents-icon.png"));
 		btnNewButton_4.setBounds(114, 120, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("");
-		btnNewButton_5.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\copy-icon.png"));
+		btnNewButton_5.setIcon(new ImageIcon("Ico"+File.separator+"copy-icon.png"));
 		btnNewButton_5.setBounds(155, 120, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(btnNewButton_5);
 		
@@ -234,12 +230,12 @@ public class Proyecto {
 				}
 			}
 			catch(IOException e1){
-				System.out.print("Error de conexion");
+				System.out.print("Error de conexion " + e1.toString());
 			}
 				
 			}
 		});
-		btnNewButton_6.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\delete-file-icon.png"));
+		btnNewButton_6.setIcon(new ImageIcon("Ico"+File.separator+"delete-file-icon.png"));
 		btnNewButton_6.setBounds(195, 120, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(btnNewButton_6);
 		
@@ -257,11 +253,11 @@ public class Proyecto {
 				}
 			}
 			catch(IOException e1){
-				System.out.print("Error de conexion");
+				System.out.print("Error de conexion: " + e1.toString());
 			}
 			}
 		});
-		btnNewButton_7.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\folder-delete-icon.png"));
+		btnNewButton_7.setIcon(new ImageIcon("Ico"+File.separator+"folder-delete-icon.png"));
 		btnNewButton_7.setBounds(240, 120, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(btnNewButton_7);
 		
@@ -287,13 +283,13 @@ public class Proyecto {
 				ruta.setText("/Sandy");
 			}
 			catch(IOException e){
-				System.out.print("Error de conexion");
+				System.out.print("Error de conexion: " + e.toString());
 			}
 				
 				
 			}
 		});
-		bt_norma.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\Folder-icon (3).png"));
+		bt_norma.setIcon(new ImageIcon("Ico"+File.separator+"Folder-icon (3).png"));
 		bt_norma.setBounds(119, 227, 64, 64);
 		frmSistemaDeArchivos.getContentPane().add(bt_norma);
 		
@@ -324,7 +320,7 @@ public class Proyecto {
 			
 			}
 		});
-		bt_cesar.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\Folder-icon (3).png"));
+		bt_cesar.setIcon(new ImageIcon("Ico"+File.separator+"Folder-icon (3).png"));
 		bt_cesar.setBounds(221, 227, 64, 64);
 		frmSistemaDeArchivos.getContentPane().add(bt_cesar);
 		
@@ -349,11 +345,11 @@ public class Proyecto {
 				ruta.setText("/Roberto");
 			}
 			catch(IOException e1){
-				System.out.print("Error de conexion");
+				System.out.print("Error de conexion " + e1.toString());
 			}			
 			}
 		});
-		bt_Luis.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\Folder-icon (3).png"));
+		bt_Luis.setIcon(new ImageIcon("Ico"+File.separator+"Folder-icon (3).png"));
 		bt_Luis.setBounds(327, 227, 64, 64);
 		frmSistemaDeArchivos.getContentPane().add(bt_Luis);
 		
@@ -385,7 +381,7 @@ public class Proyecto {
 		});
 		bt_fanny.setIcon(new ImageIcon("C:\\eclipse\\SistemasOperativos\\Ico\\Folder-icon (3).png"));
 		bt_fanny.setBounds(430, 227, 64, 64);
-		frmSistemaDeArchivos.getContentPane().add(bt_fanny);
+		//frmSistemaDeArchivos.getContentPane().add(bt_fanny);
 		
 		JLabel lblDirectorio = new JLabel("Directorio:");
 		lblDirectorio.setBounds(43, 175, 61, 14);
@@ -498,7 +494,7 @@ public class Proyecto {
 		JLabel lblFanny = new JLabel("Fanny");
 		lblFanny.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFanny.setBounds(430, 205, 64, 14);
-		frmSistemaDeArchivos.getContentPane().add(lblFanny);
+		//frmSistemaDeArchivos.getContentPane().add(lblFanny);
 		
 	}
 }
