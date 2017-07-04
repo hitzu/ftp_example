@@ -77,10 +77,9 @@ public class Proyecto {
 		ruta_act="";
 		c_ruta="";
 		frmSistemaDeArchivos = new JFrame();
-		frmSistemaDeArchivos.getContentPane().setBackground(new Color(102, 205, 170));
 		frmSistemaDeArchivos.setResizable(false);
 		frmSistemaDeArchivos.setTitle("Sistema de Archivos Distribuido");
-		frmSistemaDeArchivos.setBounds(100, 100, 619, 608);
+		frmSistemaDeArchivos.setBounds(100, 50, 650, 500);
 		frmSistemaDeArchivos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSistemaDeArchivos.getContentPane().setLayout(null);
 		ftp = new FTPClient();
@@ -114,18 +113,10 @@ public class Proyecto {
                     }
                 });
                 h.start();
-                
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		frmSistemaDeArchivos.getContentPane().add(btnNewButton);
 		
 		JButton back = new JButton("");
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				muestra.setText("");
 				FTPFile[] lista;
 				try{
@@ -134,13 +125,10 @@ public class Proyecto {
 				lista = ftp.listFiles();
 				for(int i=0; i < lista.length; i++){
 					muestra.append(lista[i].toString() + "\n");
-					
 				}
 				ruta.setText(ruta_act + ftp.printWorkingDirectory());
 				nom_dir.setText("");
-			
-				}
-				catch (IOException e3)
+				}catch (IOException e3)
 				{
 					System.out.print(e3);
 				}
@@ -148,11 +136,11 @@ public class Proyecto {
 			}
 		});
 		back.setIcon(new ImageIcon("Ico"+File.separator+"arrow-back-icon.png"));
-		back.setBounds(46, 59, 24, 24);
+		back.setBounds(40, 40, 24, 24);
 		frmSistemaDeArchivos.getContentPane().add(back);
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton sig = new JButton("");
+		sig.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				muestra.setText("");
 				FTPFile[] lista;
@@ -161,61 +149,26 @@ public class Proyecto {
 				lista = ftp.listFiles();
 				for(int i=0; i < lista.length; i++){
 					muestra.append(lista[i].toString() + "\n");
-					
 				}
 				ruta.setText(ruta_act + c_ruta);
 				nom_dir.setText("");
-				}
-				catch (IOException e3)
-				{
+				}catch (IOException e3){
 					System.out.print(e3);
 				}
-				
-				
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon("Ico"+File.separator+"arrow-next-3-icon.png"));
-		btnNewButton_1.setBounds(80, 59, 24, 24);
-		frmSistemaDeArchivos.getContentPane().add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setIcon(new ImageIcon("Ico"+File.separator+"Places-folder-green-icon.png"));
-		btnNewButton_2.setBounds(151, 59, 24, 24);
-		frmSistemaDeArchivos.getContentPane().add(btnNewButton_2);
+		sig.setIcon(new ImageIcon("Ico"+File.separator+"arrow-next-3-icon.png"));
+		sig.setBounds(68, 40, 24, 24);
+		frmSistemaDeArchivos.getContentPane().add(sig);
 		
 		ruta = new JTextField();
 		ruta.setEditable(false);
-		ruta.setBounds(185, 63, 368, 20);
+		ruta.setBounds(100, 41, 450, 25);
 		frmSistemaDeArchivos.getContentPane().add(ruta);
 		ruta.setColumns(10);
 		
-		JButton actualiza = new JButton("");
-		actualiza.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        muestra.setText("");
-                        FTPFile[] lista;
-			try{
-                            lista = ftp.listFiles();
-                            for(int i=0; i < lista.length; i++){
-                                    muestra.append(lista[i].toString() + "\n");	
-                            }
-			}
-			catch(IOException e1){
-                            System.out.print("Error de conexion: " + e1.toString());
-			}	
-                    }
-		});
-		actualiza.setIcon(new ImageIcon("Ico"+File.separator+"update-icon.png"));
-		actualiza.setBounds(568, 60, 24, 24);
-		frmSistemaDeArchivos.getContentPane().add(actualiza);
-		
-		JLabel lblNewLabel = new JLabel("Herramientas");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 124, 94, 14);
-		frmSistemaDeArchivos.getContentPane().add(lblNewLabel);
-		
-		JButton btnNewButton_4 = new JButton("");
-		btnNewButton_4.addActionListener(new ActionListener() {
+		JButton nuevaC = new JButton("NUEVA CARPETA");
+		nuevaC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				muestra.setText("");
 				FTPFile[] lista;
@@ -227,24 +180,16 @@ public class Proyecto {
 					for(int i=0; i < lista.length; i++){
 						muestra.append(lista[i].toString() + "\n");	
 					}
-					
-				}
-				catch(IOException e1){
+				}catch(IOException e1){
 					System.out.print(e1);
 				}
 			}
 		});
-		btnNewButton_4.setIcon(new ImageIcon("Ico"+File.separator+"folder-documents-icon.png"));
-		btnNewButton_4.setBounds(114, 120, 24, 24);
-		frmSistemaDeArchivos.getContentPane().add(btnNewButton_4);
+		nuevaC.setBounds(40, 380, 150, 28);
+		frmSistemaDeArchivos.getContentPane().add(nuevaC);
 		
-		JButton btnNewButton_5 = new JButton("");
-		btnNewButton_5.setIcon(new ImageIcon("Ico"+File.separator+"copy-icon.png"));
-		btnNewButton_5.setBounds(155, 120, 24, 24);
-		frmSistemaDeArchivos.getContentPane().add(btnNewButton_5);
-		
-		JButton btnNewButton_6 = new JButton("");
-		btnNewButton_6.addActionListener(new ActionListener() {
+		JButton eliminaA = new JButton("");
+		eliminaA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String arch = nom_arch.getText();
 				muestra.setText("");
@@ -255,19 +200,17 @@ public class Proyecto {
 				for(int i=0; i < lista.length; i++){
 					muestra.append(lista[i].toString() + "\n");	
 				}
-			}
-			catch(IOException e1){
+			}catch(IOException e1){
 				System.out.print("Error de conexion " + e1.toString());
-			}
-				
+			}	
 			}
 		});
-		btnNewButton_6.setIcon(new ImageIcon("Ico"+File.separator+"delete-file-icon.png"));
-		btnNewButton_6.setBounds(195, 120, 24, 24);
-		frmSistemaDeArchivos.getContentPane().add(btnNewButton_6);
+		eliminaA.setIcon(new ImageIcon("Ico"+File.separator+"delete-file-icon.png"));
+		eliminaA.setBounds(80, 380, 150, 24);
+		frmSistemaDeArchivos.getContentPane().add(eliminaA);
 		
-		JButton btnNewButton_7 = new JButton("");
-		btnNewButton_7.addActionListener(new ActionListener() {
+		JButton eliminaC = new JButton("");
+		eliminaC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String dir = nom_dir.getText();
 				muestra.setText("");
@@ -278,32 +221,31 @@ public class Proyecto {
 				for(int i=0; i < lista.length; i++){
 					muestra.append(lista[i].toString() + "\n");	
 				}
-			}
-			catch(IOException e1){
+			}catch(IOException e1){
 				System.out.print("Error de conexion: " + e1.toString());
 			}
 			}
 		});
-		btnNewButton_7.setIcon(new ImageIcon("Ico"+File.separator+"folder-delete-icon.png"));
-		btnNewButton_7.setBounds(240, 120, 24, 24);
-		frmSistemaDeArchivos.getContentPane().add(btnNewButton_7);
+		eliminaC.setIcon(new ImageIcon("Ico"+File.separator+"folder-delete-icon.png"));
+		eliminaC.setBounds(240, 350, 24, 24);
+		frmSistemaDeArchivos.getContentPane().add(eliminaC);
 		
 		JLabel lblDirectorio = new JLabel("Directorio:");
-		lblDirectorio.setBounds(43, 175, 61, 14);
+		lblDirectorio.setBounds(43, 340, 61, 14);
 		frmSistemaDeArchivos.getContentPane().add(lblDirectorio);
 		
 		nom_dir = new JTextField();
-		nom_dir.setBounds(105, 172, 113, 20);
+		nom_dir.setBounds(105, 340, 113, 20);
 		frmSistemaDeArchivos.getContentPane().add(nom_dir);
 		nom_dir.setColumns(10);
 		
 		nom_arch = new JTextField();
-		nom_arch.setBounds(380, 172, 127, 20);
+		nom_arch.setBounds(380, 340, 127, 20);
 		frmSistemaDeArchivos.getContentPane().add(nom_arch);
 		nom_arch.setColumns(10);
 		
 		JLabel lblArchivo = new JLabel("Archivo:");
-		lblArchivo.setBounds(327, 175, 46, 14);
+		lblArchivo.setBounds(327, 340, 46, 14);
 		frmSistemaDeArchivos.getContentPane().add(lblArchivo);
 		
 		JButton btnAbrir = new JButton("Abrir D");
@@ -321,49 +263,39 @@ public class Proyecto {
 				}
 				ruta.setText(ruta_act + ftp.printWorkingDirectory());
 				nom_dir.setText("");
-				}
-				catch (IOException e3)
-				{
+				}catch (IOException e3){
 					System.out.print(e3);
 				}
-				
-				
 			}
 		});
-		btnAbrir.setBounds(224, 170, 82, 23);
+		btnAbrir.setBounds(224, 340, 82, 23);
 		frmSistemaDeArchivos.getContentPane().add(btnAbrir);
 		
 		muestra = new JTextArea();
 		muestra.setLineWrap(true);
 		muestra.setWrapStyleWord(true);
-		muestra.setBounds(80, 309, 484, 136);
+		muestra.setBounds(100, 80, 450, 136);
 		
 		JScrollPane scroll= new JScrollPane(muestra);
-		scroll.setBounds(80, 309, 484, 233);
+		scroll.setBounds(100, 80, 450, 233);
 		frmSistemaDeArchivos.getContentPane().add(scroll);
 		
 		JButton subir = new JButton("Subir");
 		subir.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                         try{
-                                
-                                //FileInputStream fis = new FileInputStream("C:/Users/Hitzu/Desktop/hola.txt"); //Se abre un archivo de nuestra maquina local
-                                JFileChooser fc = new JFileChooser();
-                                int seleccion = fc.showOpenDialog(frmSistemaDeArchivos);
-                                File file = null;
-                                if(seleccion == JFileChooser.APPROVE_OPTION) 
-                                {
-                                    file = fc.getSelectedFile();
-                                }
-                                FileInputStream fis = new FileInputStream(file.getAbsolutePath());
-                                
-                                for(Conexion conexion : conexiones)
-                                {
+                            JFileChooser fc = new JFileChooser();
+                            int seleccion = fc.showOpenDialog(frmSistemaDeArchivos);
+                            File file = null;
+                            if(seleccion == JFileChooser.APPROVE_OPTION) {
+                                file = fc.getSelectedFile();
+                            }
+                            FileInputStream fis = new FileInputStream(file.getAbsolutePath());
+                            for(Conexion conexion : conexiones){
                                     System.out.println(conexion);
                                     String ip = conexion.getIp();
                                     String user = conexion.getUser();
                                     String pass = conexion.getPass();
-			
                                     try{
                                         ftp.connect(ip);
                                         if(ftp.login(user, pass))
@@ -371,43 +303,33 @@ public class Proyecto {
                                             ftp.enterLocalPassiveMode();
                                             ftp.changeWorkingDirectory("/"); 
                                             ftp.setFileType(FTPClient.BINARY_FILE_TYPE); //Se pone tipo binario para poder enviar archivos de cualquier tipo
-                                            if(ftp.storeFile(file.getName(),fis))
-                                            {
+                                            if(ftp.storeFile(file.getName(),fis)){
                                                 System.out.println("Se envio el archivo a " + conexion.getNombre());
-                                            }
-                                            else
-                                            {
+                                            }else{
                                                 System.out.println("NO Se envio el archivo a " + conexion.getNombre());
                                             }
-                                        }
-                                        else
-                                        {
+                                        } else{
                                             System.out.println("No se logro conectar con: " + conexion.getNombre());
                                         }
-                                    }
-                                    catch(IOException e2){
+                                    }catch(IOException e2){
                                             System.out.print("Error de conexion en multiprueba: " + e2.toString());
-                                    }
-                                               //nos movemos dentro del arbol de directorios        
+                                    }     
                                 }
-                        }
-                        catch(IOException e1){
+                        }catch(IOException e1){
                                 System.out.print(e1);
                         }
-                }
+                    }
 		});
-		subir.setBounds(284, 120, 89, 23);
+		subir.setBounds(284, 380, 89, 23);
 		frmSistemaDeArchivos.getContentPane().add(subir);
 		
 		JButton abrir = new JButton("Abrir Archivo");
 		abrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
 				try{
 				FileOutputStream stream = null;
 				String archivo = "/" + nom_arch.getText();
 				stream = new FileOutputStream("C:/Users/normita.jacqui/Desktop/Abrir" + archivo);
-
 				ftp.retrieveFile(archivo, stream);//pone el archivo en tu stream
 				stream.close();
 				String f= new String("C:/Users/normita.jacqui/Desktop/Abrir" + archivo);
@@ -418,10 +340,8 @@ public class Proyecto {
 				}
 			}	
 		});
-		abrir.setBounds(515, 170, 83, 23);
+		abrir.setBounds(515, 340, 83, 23);
 		frmSistemaDeArchivos.getContentPane().add(abrir);
-		
-		
 	}
         
         private void LLenarConexiones()
@@ -436,6 +356,5 @@ public class Proyecto {
             conexiones.add(conexion3);
             //Conexion conexion4 = new Conexion(c.nombre4,c.ip4,c.usr4,c.pass4);
             //conexiones.add(conexion4);
-            
         }
 }
