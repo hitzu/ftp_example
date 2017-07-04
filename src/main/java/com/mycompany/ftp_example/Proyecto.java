@@ -10,6 +10,8 @@ package com.mycompany.ftp_example;
  * @author roberto
  */
 
+import Constants.Constants;
+import Models.Conexion;
 import java.awt.EventQueue;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -28,6 +30,8 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import java.awt.Color;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JFileChooser;
 
 
@@ -41,6 +45,8 @@ public class Proyecto {
 	private String ruta_act;
 	private FTPClient ftp;
 	private String c_ruta;
+        private List<Conexion> conexiones;
+        
 	/**
 	 * Launch the application.
 	 */
@@ -78,6 +84,8 @@ public class Proyecto {
 		frmSistemaDeArchivos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSistemaDeArchivos.getContentPane().setLayout(null);
 		ftp = new FTPClient();
+                LLenarConexiones();
+                
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -431,7 +439,7 @@ public class Proyecto {
 		subir.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                         try{
-                                ftp.changeWorkingDirectory("/");            //nos movemos dentro del arbol de directorios        
+                                
                                 //FileInputStream fis = new FileInputStream("C:/Users/Hitzu/Desktop/hola.txt"); //Se abre un archivo de nuestra maquina local
                                 JFileChooser fc = new JFileChooser();
                                 int seleccion = fc.showOpenDialog(frmSistemaDeArchivos);
@@ -441,8 +449,40 @@ public class Proyecto {
                                     file = fc.getSelectedFile();
                                 }
                                 FileInputStream fis = new FileInputStream(file.getAbsolutePath());
-                                ftp.setFileType(ftp.BINARY_FILE_TYPE); //Se pone tipo binario para poder enviar archivos de cualquier tipo
-                                boolean res = ftp.storeFile("Hola.txt", fis ); //arch=nombre que va a tener el archivo
+                                
+                                for(Conexion conexion : conexiones)
+                                {
+                                    System.out.println(conexion);
+                                    String ip = conexion.getIp();
+                                    String user = conexion.getUser();
+                                    String pass = conexion.getPass();
+			
+                                    try{
+                                        ftp.connect(ip);
+                                        if(ftp.login(user, pass))
+                                        {
+                                            ftp.enterLocalPassiveMode();
+                                            ftp.changeWorkingDirectory("/"); 
+                                            ftp.setFileType(FTPClient.BINARY_FILE_TYPE); //Se pone tipo binario para poder enviar archivos de cualquier tipo
+                                            if(ftp.storeFile(file.getName(),fis))
+                                            {
+                                                System.out.println("Se envio el archivo a " + conexion.getNombre());
+                                            }
+                                            else
+                                            {
+                                                System.out.println("NO Se envio el archivo a " + conexion.getNombre());
+                                            }
+                                        }
+                                        else
+                                        {
+                                            System.out.println("No se logro conectar con: " + conexion.getNombre());
+                                        }
+                                    }
+                                    catch(IOException e2){
+                                            System.out.print("Error de conexion en multiprueba: " + e2.toString());
+                                    }
+                                               //nos movemos dentro del arbol de directorios        
+                                }
                         }
                         catch(IOException e1){
                                 System.out.print(e1);
@@ -495,4 +535,19 @@ public class Proyecto {
 		//frmSistemaDeArchivos.getContentPane().add(lblFanny);
 		
 	}
+        
+        private void LLenarConexiones()
+        {
+            conexiones = new LinkedList<Conexion>();
+            Constants c = new Constants();
+            Conexion conexion1 = new Conexion(c.nombre1,c.ip1,c.usr1,c.pass1);
+            conexiones.add(conexion1);
+            Conexion conexion2 = new Conexion(c.nombre2,c.ip2,c.usr2,c.pass2);
+            conexiones.add(conexion2);
+            Conexion conexion3 = new Conexion(c.nombre3,c.ip3,c.usr3,c.pass3);
+            conexiones.add(conexion3);
+            //Conexion conexion1 = new Conexion(c.nombre4,c.ip4,c.usr4,c.pass4);
+            //conexiones.add(conexion1);
+            
+        }
 }
