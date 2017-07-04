@@ -32,6 +32,8 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 
@@ -46,7 +48,7 @@ public class Proyecto {
 	private FTPClient ftp;
 	private String c_ruta;
         private List<Conexion> conexiones;
-        
+        private Constants c;
 	/**
 	 * Launch the application.
 	 */
@@ -83,17 +85,18 @@ public class Proyecto {
 		frmSistemaDeArchivos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSistemaDeArchivos.getContentPane().setLayout(null);
 		ftp = new FTPClient();
+                c = new Constants();
                 LLenarConexiones();
                 
                 Thread h = new Thread(new Runnable() {
                     @Override
                     public void run(){
                         while(true){
-                           String archivos="";
+                            String archivos="";
                             FTPFile[] lista;
-                            String ip = "localhost";
-                            String user = "Sandy";
-                            String pass = "sandy";
+                            String ip = c.localhost;
+                            String user = c.usrLocal;
+                            String pass = c.passLocal;
                             try{
 				ftp.connect(ip);
 				if(ftp.login(user, pass)){
@@ -103,8 +106,13 @@ public class Proyecto {
 					archivos += lista[i]+"\n";	
                                     }
                                 }
-				ruta.setText("/Sandy");
+				ruta.setText(c.nombreLocal);
                                 muestra.setText(archivos);
+                                try {
+                                Thread.sleep(100000);
+                                } catch (InterruptedException ex) {
+                                    Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+                                }
 			}
 			catch(IOException e){
 				System.out.print("Error de conexion: " + e.toString());
@@ -323,14 +331,27 @@ public class Proyecto {
 		JButton abrir = new JButton("ABRIR ARCHIVO");
 		abrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
-				FileOutputStream stream = null;
-				String archivo = "/" + nom_arch.getText();
-				stream = new FileOutputStream("C:/Users/normita.jacqui/Desktop/Abrir" + archivo);
-				ftp.retrieveFile(archivo, stream);//pone el archivo en tu stream
-				stream.close();
-				String f= new String("C:/Users/normita.jacqui/Desktop/Abrir" + archivo);
-				Runtime.getRuntime().exec("cmd /c start " + f);
+				try
+                                {          
+                                    FTPFile[] lista;
+                                    String ip = c.localhost;
+                                    String user = c.usrLocal;
+                                    String pass = c.passLocal;
+                                
+                                    ftp.connect(ip);
+                                    if(ftp.login(user, pass))
+                                    {
+                                        ftp.enterLocalPassiveMode();
+                                        lista = ftp.listFiles();
+                                        for (FTPFile archivo : lista) 
+                                        {
+                                            if(archivo.getName().equals(nom_arch.getText()))
+                                            {
+                                                Runtime.getRuntime().exec("cmd /c start " + c.rutaLocal+archivo.getName());
+                                            }
+                                        }
+                                    }
+				
 				}catch(IOException e1){
 					System.out.print(e1);
 				}
@@ -343,7 +364,6 @@ public class Proyecto {
         private void LLenarConexiones()
         {
             conexiones = new LinkedList<Conexion>();
-            Constants c = new Constants();
             Conexion conexion1 = new Conexion(c.nombre1,c.ip1,c.usr1,c.pass1);
             conexiones.add(conexion1);
             Conexion conexion2 = new Conexion(c.nombre2,c.ip2,c.usr2,c.pass2);

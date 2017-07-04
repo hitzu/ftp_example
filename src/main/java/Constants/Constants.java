@@ -28,4 +28,10 @@ public class Constants {
     public String pass3 = "ihernandez";
     //public String pass4 = "192.168.1.14";
     
+    public String nombreLocal = "/Hitzu";
+    public String localhost = "localhost";
+    public String usrLocal = "Hitzu";
+    public String passLocal = "olagatito!";
+    public String rutaLocal = "C:\\Users\\Hitzu\\Documents\\Nueva Carpeta\\";
+    
 }
